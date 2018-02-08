@@ -1,0 +1,11 @@
+{
+  "name": "@weco/next-transpile-modules",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "repository": "wellcometrust/next-transpile-modules",
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^3.10.0"
+  }
+}
