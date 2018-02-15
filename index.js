@@ -21,7 +21,7 @@ module.exports = (nextConfig = {}) => {
       
       config.module.rules.push({
         test: /\.+(js|jsx)$/,
-        loader: defaultLoaders.babel,
+        loader: options.defaultLoaders.babel,
         include: includes
       })
 
