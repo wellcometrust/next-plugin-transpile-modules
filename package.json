@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "repository": "KeitIG/next-plugin-transpile-modules",
+  "description": "Next plugin to transpile code from node_modules (supports TypeScript)",
   "keywords": [
     "next",
     "next.js",
