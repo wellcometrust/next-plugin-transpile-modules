@@ -19,6 +19,8 @@ yarn add next-plugin-transpile-modules
 
 ## Usage
 
+Classic:
+
 ```js
 // next.config.js
 const withTM = require('next-plugin-transpile-modules');
@@ -26,4 +28,17 @@ const withTM = require('next-plugin-transpile-modules');
 module.exports = withTM({
   transpileModules: ['somemodule', 'oranother']
 });
+```
+
+With `with-typescript`:
+
+```js
+const withTypescript = require('@zeit/next-typescript');
+const withTM = require('./plugins/with-transpiled-modules');
+
+module.exports = withTypescript(
+  withTM({
+    transpileModules: ['somemodule', 'oranother']
+  })
+);
 ```
