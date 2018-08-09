@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "repository": "KeitIG/next-plugin-transpile-modules",
+  "keywords": [ "next", "next.js", "transpile", "babel", "modules"],
   "dependencies": {},
   "devDependencies": {
     "webpack": "^3.10.0"
