@@ -1,10 +1,16 @@
 {
   "name": "next-plugin-transpile-modules",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "index.js",
   "license": "MIT",
   "repository": "KeitIG/next-plugin-transpile-modules",
-  "keywords": [ "next", "next.js", "transpile", "babel", "modules"],
+  "keywords": [
+    "next",
+    "next.js",
+    "transpile",
+    "babel",
+    "modules"
+  ],
   "dependencies": {},
   "devDependencies": {
     "webpack": "^3.10.0"
