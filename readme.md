@@ -1,4 +1,4 @@
-# Next.js + Transpile `node_module`
+# Next.js + Transpile `node_modules`
 
 Transpile untranspiled modules from your `node_modules`.
 Makes it easy to have local libraries and keep a slick, manageable dev experience.
