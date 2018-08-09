@@ -18,9 +18,9 @@ module.exports = (nextConfig = {}) => {
         return (ctx, req, cb) =>
           (Boolean(includes.find(include => include.test(req))) ? cb() : external(ctx, req, cb))
       })
-      
+
       config.module.rules.push({
-        test: /\.+(js|jsx)$/,
+        test: /\.+(js|jsx|ts|tsx)$/,
         loader: options.defaultLoaders.babel,
         include: includes
       })
