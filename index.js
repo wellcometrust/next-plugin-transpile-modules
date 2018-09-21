@@ -1,3 +1,15 @@
+/**
+ * Stolen from https://stackoverflow.com/questions/10776600/testing-for-equality-of-regular-expressions
+ */
+function regexEqual(x, y) {
+  return (x instanceof RegExp) && (y instanceof RegExp) &&
+    (x.source === y.source) && (x.global === y.global) &&
+    (x.ignoreCase === y.ignoreCase) && (x.multiline === y.multiline);
+}
+
+/**
+ * Actual Next.js plugin
+ */
 module.exports = (nextConfig = {}) => {
 
   const { transpileModules = [] } = nextConfig
@@ -32,9 +44,16 @@ module.exports = (nextConfig = {}) => {
       return config
     },
 
+    // webpackDevMiddleware needs to be told to watch the changes in the
+    // transpiled modules directories
     webpackDevMiddleware(config) {
-      const ignored = [config.watchOptions.ignored[0]].concat(excludes)
-      config.watchOptions.ignored = ignored
+      // Replace /node_modules/ by the new exclude RegExp (including the modules
+      // that are going to be transpiled)
+      const ignored = config.watchOptions.ignored.filter(
+        regexp => !regexEqual(regexp, /node_modules/)
+      ).concat(excludes);
+
+      config.watchOptions.ignored = ignored;
       return config
     }
   })
