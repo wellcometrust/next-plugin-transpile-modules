@@ -18,12 +18,14 @@ module.exports = (nextConfig = {}) => {
 
   return Object.assign({}, nextConfig, {
     webpack(config, options) {
+      // Safecheck for Next < 5.0
       if (!options.defaultLoaders) {
         throw new Error(
           'This plugin is not compatible with Next.js versions below 5.0.0 https://err.sh/next-plugins/upgrade'
         )
       }
 
+      // Avoid Webpack to resolve transpiled modules path to their real path
       config.resolve.symlinks = false
       config.externals = config.externals.map(external => {
         if (typeof external !== 'function') return external
@@ -31,6 +33,7 @@ module.exports = (nextConfig = {}) => {
           (Boolean(includes.find(include => include.test(req))) ? cb() : external(ctx, req, cb))
       })
 
+      // Add a rule to include and parse all modueles
       config.module.rules.push({
         test: /\.+(js|jsx|ts|tsx)$/,
         loader: options.defaultLoaders.babel,
