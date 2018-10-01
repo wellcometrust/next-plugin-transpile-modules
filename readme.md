@@ -34,7 +34,7 @@ With `with-typescript`:
 
 ```js
 const withTypescript = require('@zeit/next-typescript');
-const withTM = require('./plugins/with-transpiled-modules');
+const withTM = require('next-plugin-transpile-modules');
 
 module.exports = withTypescript(
   withTM({
