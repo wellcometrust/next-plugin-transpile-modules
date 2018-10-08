@@ -3,7 +3,10 @@
 Transpile untranspiled modules from your `node_modules`.
 Makes it easy to have local libraries and keep a slick, manageable dev experience.
 
-⚠️ The main difference with `@weco/next-plugin-transpile-modules` is this one support Next's `with-typescript` plugin: you can transpile TypeScript files.
+#### Differences with `@weco/next-plugin-transpile-modules`
+
+- it is maintained, `@weco`'s seems dead
+- it supports TypeScript
 
 ## Installation
 
@@ -19,6 +22,8 @@ yarn add next-plugin-transpile-modules
 
 ## Usage
 
+**Troubles with Next 7?** Please read the [on-going discussion](https://github.com/martpie/next-plugin-transpile-modules/issues/1).
+
 Classic:
 
 ```js
@@ -26,9 +31,11 @@ Classic:
 const withTM = require('next-plugin-transpile-modules');
 
 module.exports = withTM({
-  transpileModules: ['somemodule', 'oranother']
+  transpileModules: ['somemodule', 'and-another']
 });
 ```
+
+**note:** please declare `withTM` as your last plugin (the "most nested" one).
 
 With `with-typescript`:
 
@@ -38,7 +45,7 @@ const withTM = require('./plugins/with-transpiled-modules');
 
 module.exports = withTypescript(
   withTM({
-    transpileModules: ['somemodule', 'oranother']
+    transpileModules: ['somemodule', 'and-another']
   })
 );
 ```
