@@ -3,7 +3,7 @@
   "version": "0.1.3",
   "main": "index.js",
   "license": "MIT",
-  "repository": "KeitIG/next-plugin-transpile-modules",
+  "repository": "martpie/next-plugin-transpile-modules",
   "description": "Next plugin to transpile code from node_modules (supports TypeScript)",
   "keywords": [
     "next",
