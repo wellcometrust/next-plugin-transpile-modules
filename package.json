@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "repository": "martpie/next-plugin-transpile-modules",
-  "description": "Next plugin to transpile code from node_modules (supports TypeScript)",
+  "description": "Next.js plugin to transpile code from node_modules (supports TypeScript)",
   "keywords": [
     "next",
     "next.js",
