@@ -13,8 +13,8 @@ function regexEqual(x, y) {
 module.exports = (nextConfig = {}) => {
 
   const { transpileModules = [] } = nextConfig
-  const includes = transpileModules.map(module => (new RegExp(`${module}(?!.*node_modules)`)))
-  const excludes = transpileModules.map(module => (new RegExp(`node_modules(?!\/${module}(?!.*node_modules))`)))
+  const includes = transpileModules.map(module => (new RegExp(`${module}(?!.*node_modules)`)));
+  const excludes = [new RegExp(`node_modules(?!\/(${transpileModules.join('|')})(?!.*node_modules))`)];
 
   return Object.assign({}, nextConfig, {
     webpack(config, options) {
