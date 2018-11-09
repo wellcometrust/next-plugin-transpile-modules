@@ -1,5 +1,8 @@
 # Next.js + Transpile `node_modules`
 
+
+**⚠️ Troubles with Next 7?** Please read the [ongoing discussion](https://github.com/martpie/next-plugin-transpile-modules/issues/1).
+
 Transpile untranspiled modules from your `node_modules`.
 Makes it easy to have local libraries and keep a slick, manageable dev experience.
 
@@ -21,8 +24,6 @@ yarn add next-plugin-transpile-modules
 ```
 
 ## Usage
-
-**Troubles with Next 7?** Please read the [on-going discussion](https://github.com/martpie/next-plugin-transpile-modules/issues/1).
 
 Classic:
 
