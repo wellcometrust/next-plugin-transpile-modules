@@ -25,7 +25,7 @@ module.exports = (nextConfig = {}) => {
         )
       }
 
-      // Avoid Webpack to resolve transpiled modules path to their real path
+      // Avoid having Webpack resolve transpiled modules path to their real path
       config.resolve.symlinks = false
       config.externals = config.externals.map(external => {
         if (typeof external !== 'function') return external
@@ -33,7 +33,7 @@ module.exports = (nextConfig = {}) => {
           (Boolean(includes.find(include => include.test(req))) ? cb() : external(ctx, req, cb))
       })
 
-      // Add a rule to include and parse all modueles
+      // Add a rule to include and parse all modules
       config.module.rules.push({
         test: /\.+(js|jsx|ts|tsx)$/,
         loader: options.defaultLoaders.babel,
