@@ -1,6 +1,6 @@
 {
   "name": "next-plugin-transpile-modules",
-  "version": "0.1.3",
+  "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "author": "Pierre de la Martinière <pierre.de.la.martiniere@gmail.com>",
