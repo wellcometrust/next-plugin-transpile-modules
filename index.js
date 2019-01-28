@@ -1,3 +1,5 @@
+const path = require("path");
+
 /**
  * Stolen from https://stackoverflow.com/questions/10776600/testing-for-equality-of-regular-expressions
  */
@@ -28,8 +30,15 @@ module.exports = (nextConfig = {}) => {
       config.resolve.symlinks = false;
       config.externals = config.externals.map(external => {
         if (typeof external !== 'function') return external;
-        return (ctx, req, cb) =>
-          (includes.find(include => include.test(req)) ? cb() : external(ctx, req, cb));
+        return (ctx, req, cb) => {
+          return includes.find(include =>
+            req.startsWith('.')
+              ? include.test(path.resolve(ctx, req))
+              : include.test(req)
+          )
+            ? cb()
+            : external(ctx, req, cb);
+        };
       });
 
       // Add a rule to include and parse all modueles
