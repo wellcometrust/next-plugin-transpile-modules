@@ -1,4 +1,4 @@
-const path = require("path");
+const path = require('path');
 
 /**
  * Stolen from https://stackoverflow.com/questions/10776600/testing-for-equality-of-regular-expressions
