@@ -30,7 +30,7 @@ module.exports = withTM({
 
 **note:** please declare `withTM` as your last plugin (the "most nested" one).
 
-With `with-typescript`:
+With `next-typescript`:
 
 ```js
 const withTypescript = require('@zeit/next-typescript');
