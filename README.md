@@ -52,9 +52,9 @@ module.exports = withTypescript(
 
 ### I have trouble making it work with Next.js 7
 
-Due to [an upstream bug](https://github.com/zeit/next.js/issues/5393) (not sure if it is coming from Next.js or Babel), Babel does not correctly catch the correct configuration.
+Next.js 7 introduced Webpack 4 and Babel 7, [which changed a couple of things](https://github.com/zeit/next.js/issues/5393#issuecomment-458517433), especially for TypeScript and Flow plugins.
 
-Please read the [ongoing discussion](https://github.com/martpie/next-plugin-transpile-modules/issues/1), and [here is a solution](https://github.com/martpie/next-plugin-transpile-modules/issues/1#issuecomment-427749256) for this problem.
+If you have a transpilation error when loading a page, check that your `.babelrc`/`babel.config.js` is up to date and valid, [you may have forgotten a preset](https://github.com/martpie/next-plugin-transpile-modules/issues/1#issuecomment-427749256) there.
 
 ### I have trouble with Yarn and hot reloading
 
