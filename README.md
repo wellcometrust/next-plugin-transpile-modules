@@ -3,6 +3,13 @@
 Transpile untranspiled modules from `node_modules`.
 Makes it easy to have local libraries and keep a slick, manageable dev experience.
 
+## Compatibility table
+
+| Next.js version | Plugin version |
+|-----------------|----------------|
+| Next.js 8       | 2.x            |
+| Next.js 6 / 7   | 1.x            |
+
 ## Installation
 
 ```
