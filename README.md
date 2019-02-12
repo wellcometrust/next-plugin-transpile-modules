@@ -13,13 +13,13 @@ Makes it easy to have local libraries and keep a slick, manageable dev experienc
 ## Installation
 
 ```
-npm install --save next-plugin-transpile-modules
+npm install --save next-transpile-modules
 ```
 
 or
 
 ```
-yarn add next-plugin-transpile-modules
+yarn add next-transpile-modules
 ```
 
 ## Usage
@@ -28,7 +28,7 @@ Classic:
 
 ```js
 // next.config.js
-const withTM = require('next-plugin-transpile-modules');
+const withTM = require('next-transpile-modules');
 
 module.exports = withTM({
   transpileModules: ['somemodule', 'and-another']
@@ -41,7 +41,7 @@ With `next-typescript`:
 
 ```js
 const withTypescript = require('@zeit/next-typescript');
-const withTM = require('next-plugin-transpile-modules');
+const withTM = require('next-transpile-modules');
 
 module.exports = withTypescript(
   withTM({
@@ -61,7 +61,7 @@ module.exports = withTypescript(
 
 Next.js 7 introduced Webpack 4 and Babel 7, [which changed a couple of things](https://github.com/zeit/next.js/issues/5393#issuecomment-458517433), especially for TypeScript and Flow plugins.
 
-If you have a transpilation error when loading a page, check that your `.babelrc`/`babel.config.js` is up to date and valid, [you may have forgotten a preset](https://github.com/martpie/next-plugin-transpile-modules/issues/1#issuecomment-427749256) there.
+If you have a transpilation error when loading a page, check that your `.babelrc`/`babel.config.js` is up to date and valid, [you may have forgotten a preset](https://github.com/martpie/next-transpile-modules/issues/1#issuecomment-427749256) there.
 
 ### I have trouble with Yarn and hot reloading
 
@@ -75,4 +75,4 @@ Lerna's purpose is to publish different packages from a monorepo, **it does not 
 
 This is not coming from me, but [from Lerna's maintainer](https://github.com/lerna/lerna/issues/1243#issuecomment-401396850).
 
-So you are probably [using it wrong](https://github.com/martpie/next-plugin-transpile-modules/issues/5#issuecomment-441501107), and I advice you to use `npm` or Yarn workspaces instead.
+So you are probably [using it wrong](https://github.com/martpie/next-transpile-modules/issues/5#issuecomment-441501107), and I advice you to use `npm` or Yarn workspaces instead.

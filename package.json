@@ -1,5 +1,5 @@
 {
-  "name": "next-plugin-transpile-modules",
+  "name": "next-transpile-modules",
   "version": "2.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -14,18 +14,19 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/martpie/next-plugin-transpile-modules.git"
+    "url": "git+https://github.com/martpie/next-transpile-modules.git"
   },
   "bugs": {
-    "url": "https://github.com/martpie/next-plugin-transpile-modules/issues"
+    "url": "https://github.com/martpie/next-transpile-modules/issues"
   },
-  "homepage": "https://github.com/martpie/next-plugin-transpile-modules#readme",
+  "homepage": "https://github.com/martpie/next-transpile-modules#readme",
   "keywords": [
     "next",
     "next.js",
+    "plugin",
     "transpile",
-    "babel",
-    "modules"
+    "modules",
+    "babel"
   ],
   "dependencies": {},
   "devDependencies": {
