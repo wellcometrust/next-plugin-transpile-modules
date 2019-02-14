@@ -94,3 +94,25 @@ Lerna's purpose is to publish different packages from a monorepo, **it does not 
 This is not coming from me, but [from Lerna's maintainer](https://github.com/lerna/lerna/issues/1243#issuecomment-401396850).
 
 So you are probably [using it wrong](https://github.com/martpie/next-transpile-modules/issues/5#issuecomment-441501107), and I advice you to use `npm` or Yarn workspaces instead.
+
+### But... I really need to make it work with Lerna!
+
+You may need to tell your Webpack configuration how to properly resolve your scoped packages, as they won't be installed in your Next.js directory, but the root of your Lerna setup.
+
+```js
+const withTM = require('next-transpile-modules');
+
+module.exports = withTM({
+  transpileModules: ['somemodule', 'and-another'],
+  webpack: (config, options) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      // Will make webpack look for these modules in parent directories
+      '@your-project/shared': require.resolve('@your-project/shared'),
+      '@your-project/styleguide': require.resolve('@your-project/styleguide'),
+      // ...
+    };
+    return config;
+  },
+});
+```
