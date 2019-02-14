@@ -37,7 +37,7 @@ module.exports = withTM({
 
 **note:** please declare `withTM` as your last plugin (the "most nested" one).
 
-With `next-typescript`:
+Example with `next-typescript`:
 
 ```js
 const withTypescript = require('@zeit/next-typescript');
@@ -48,6 +48,24 @@ module.exports = withTypescript(
     transpileModules: ['somemodule', 'and-another']
   })
 );
+```
+
+With `next-compose-plugins`:
+
+```js
+const withPlugins = require('next-compose-plugins');
+
+const withTypescript = require('@zeit/next-typescript');
+const withTM = require('next-transpile-modules');
+
+module.exports = withPlugins([
+  [withTM, {
+    transpileModules: ['some-module', 'and-another'],
+  }],
+  withTypescript,
+], {
+  // ...
+});
 ```
 
 ## FAQ
