@@ -103,7 +103,7 @@ You may need to tell your Webpack configuration how to properly resolve your sco
 const withTM = require('next-transpile-modules');
 
 module.exports = withTM({
-  transpileModules: ['somemodule', 'and-another'],
+  transpileModules: ['@your-project/shared', '@your-project/styleguide'],
   webpack: (config, options) => {
     config.resolve.alias = {
       ...config.resolve.alias,
