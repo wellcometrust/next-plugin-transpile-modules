@@ -89,7 +89,7 @@ You can go back to `npm`, or use Yarn workspaces. See [an example](https://githu
 
 ### I have trouble making it work with Lerna
 
-Lerna's purpose is to publish different packages from a monorepo, **it does not help for and do not intend to help local development with local modules**.
+Lerna's purpose is to publish different packages from a monorepo, **it does not help for and does not intend to help local development with local modules**.
 
 This is not coming from me, but [from Lerna's maintainer](https://github.com/lerna/lerna/issues/1243#issuecomment-401396850).
 
