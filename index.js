@@ -61,6 +61,7 @@ module.exports = (nextConfig = {}) => {
     webpackDevMiddleware (config) {
       // Replace /node_modules/ by the new exclude RegExp (including the modules
       // that are going to be transpiled)
+      // https://github.com/zeit/next.js/blob/815f2e91386a0cd046c63cbec06e4666cff85971/packages/next/server/hot-reloader.js#L335
       const ignored = config.watchOptions.ignored.filter(
         regexp => !regexEqual(regexp, /[\\/]node_modules[\\/]/)
       ).concat(excludes);
