@@ -13,13 +13,13 @@ Makes it easy to have local libraries and keep a slick, manageable dev experienc
 ## Installation
 
 ```
-npm install --save next-transpile-modules
+npm install --save @weco/next--plugin-transpile-modules
 ```
 
 or
 
 ```
-yarn add next-transpile-modules
+yarn add @weco/next--plugin-transpile-modules
 ```
 
 ## Usage
@@ -28,7 +28,7 @@ Classic:
 
 ```js
 // next.config.js
-const withTM = require('next-transpile-modules');
+const withTM = require('@weco/next-plugin-transpile-modules');
 
 module.exports = withTM({
   transpileModules: ['somemodule', 'and-another']
@@ -41,7 +41,7 @@ Example with `next-typescript`:
 
 ```js
 const withTypescript = require('@zeit/next-typescript');
-const withTM = require('next-transpile-modules');
+const withTM = require('@weco/next-plugin-transpile-modules');
 
 module.exports = withTypescript(
   withTM({
@@ -56,7 +56,7 @@ With `next-compose-plugins`:
 const withPlugins = require('next-compose-plugins');
 
 const withTypescript = require('@zeit/next-typescript');
-const withTM = require('next-transpile-modules');
+const withTM = require('@weco/next-plugin-transpile-modules');
 
 module.exports = withPlugins([
   [withTM, {
@@ -69,11 +69,6 @@ module.exports = withPlugins([
 ```
 
 ## FAQ
-
-### What is the difference with `@weco/next-plugin-transpile-modules`?
-
-- it is maintained, `@weco`'s seems dead
-- it supports TypeScript
 
 ### I have trouble making it work with Next.js 7
 
@@ -100,7 +95,7 @@ So you are probably [using it wrong](https://github.com/martpie/next-transpile-m
 You may need to tell your Webpack configuration how to properly resolve your scoped packages, as they won't be installed in your Next.js directory, but the root of your Lerna setup.
 
 ```js
-const withTM = require('next-transpile-modules');
+const withTM = require('@weco/next--plugin-transpile-modules');
 
 module.exports = withTM({
   transpileModules: ['@your-project/shared', '@your-project/styleguide'],
