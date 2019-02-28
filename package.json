@@ -1,11 +1,41 @@
 {
-  "name": "@weco/next-plugin-transpile-modules",
-  "version": "0.0.1",
+  "name": "next-transpile-modules",
+  "version": "2.0.0",
   "main": "index.js",
   "license": "MIT",
-  "repository": "wellcometrust/next-plugin-transpile-modules",
+  "author": "Pierre de la Martinière <pierre.de.la.martiniere@gmail.com>",
+  "description": "Next.js plugin to transpile code from node_modules (supports TypeScript)",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ."
+  },
+  "files": [
+    "index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martpie/next-transpile-modules.git"
+  },
+  "bugs": {
+    "url": "https://github.com/martpie/next-transpile-modules/issues"
+  },
+  "homepage": "https://github.com/martpie/next-transpile-modules#readme",
+  "keywords": [
+    "next",
+    "next.js",
+    "plugin",
+    "transpile",
+    "modules",
+    "babel"
+  ],
   "dependencies": {},
   "devDependencies": {
-    "webpack": "^3.10.0"
+    "eslint": "5.12.1",
+    "eslint-config-semistandard": "^13.0.0",
+    "eslint-config-standard": "12.0.0",
+    "eslint-plugin-import": "2.15.0",
+    "eslint-plugin-node": "8.0.1",
+    "eslint-plugin-promise": "4.0.1",
+    "eslint-plugin-standard": "4.0.0"
   }
 }
