@@ -67,6 +67,11 @@ module.exports = (nextConfig = {}) => {
       ).concat(excludes);
 
       config.watchOptions.ignored = ignored;
+
+      if (typeof nextConfig.webpackDevMiddleware === 'function') {
+        return nextConfig.webpackDevMiddleware(config);
+      }
+
       return config;
     }
   });
