@@ -1,6 +1,5 @@
 /* eslint-env jest */
 
-const path = require('path');
 const rewire = require('rewire');
 const anymatch = require('anymatch');
 
@@ -10,26 +9,34 @@ const generateIncludes = withTmRewire.__get__('generateIncludes');
 const generateExcludes = withTmRewire.__get__('generateExcludes');
 const regexEqual = withTmRewire.__get__('regexEqual');
 
-const modules = ['shared', 'and-another'];
+const modules = ['shared', 'and-another', '@scoped/something'];
 
 describe('generateIncludes', () => {
   const includes = generateIncludes(modules);
 
   test('should match transpiledModules direct paths', () => {
-    expect(anymatch(includes, 'node_modules/shared')).toBe(true);
-    expect(anymatch(includes, 'node_modules/shared')).toBe(true);
-    expect(anymatch(includes, path.resolve('node_modules/and-another'))).toBe(true);
-    expect(anymatch(includes, path.resolve('node_modules/and-another'))).toBe(true);
+    expect(anymatch(includes, './node_modules/shared/test.js')).toBe(true);
+    expect(anymatch(includes, './node_modules/and-another/test.js')).toBe(true);
+    expect(anymatch(includes, './node_modules/@scoped/something/test.js')).toBe(true);
+
+    expect(anymatch(includes, './node_modules/shared/sub/test.js')).toBe(true);
+    expect(anymatch(includes, './node_modules/and-another/sub/test.js')).toBe(true);
+    expect(anymatch(includes, './node_modules/@scoped/something/sub/test.js')).toBe(true);
   });
 
   test('should match transpiledModules parent paths (e.g. with Yarn workspaces)', () => {
-    expect(anymatch(includes, '../../node_modules/shared')).toBe(true);
-    expect(anymatch(includes, '../../node_modules/and-another')).toBe(true);
+    expect(anymatch(includes, '../../node_modules/shared/test.js')).toBe(true);
+    expect(anymatch(includes, '../../node_modules/and-another/test.js')).toBe(true);
+    expect(anymatch(includes, '../../node_modules/@scoped/something/test.js')).toBe(true);
+
+    expect(anymatch(includes, '../../node_modules/shared/sub/test.js')).toBe(true);
+    expect(anymatch(includes, '../../node_modules/and-another/sub/test.js')).toBe(true);
+    expect(anymatch(includes, '../../node_modules/@scoped/something/sub/test.js')).toBe(true);
   });
 
-  test('should not match unreferenced modules', () => {
-    expect(anymatch(includes, '../../node_modules/something-else')).toBe(false);
-    expect(anymatch(includes, 'node_modules/and-yet-another')).toBe(false);
+  test('should NOT match unreferenced modules', () => {
+    expect(anymatch(includes, '../../node_modules/something-else/test.js')).toBe(false);
+    expect(anymatch(includes, 'node_modules/and-yet-another/test.js')).toBe(false);
   });
 });
 
@@ -37,13 +44,23 @@ describe('generateExcludes', () => {
   const excludes = generateExcludes(modules);
 
   test('should NOT match transpiledModules direct paths', () => {
-    expect(anymatch(excludes, 'node_modules/shared')).toBe(false);
-    expect(anymatch(excludes, 'node_modules/and-another')).toBe(false);
+    expect(anymatch(excludes, './node_modules/shared/test.js')).toBe(false);
+    expect(anymatch(excludes, './node_modules/and-another/test.js')).toBe(false);
+    expect(anymatch(excludes, './node_modules/@scoped/something/test.js')).toBe(false);
+
+    expect(anymatch(excludes, './node_modules/shared/sub/test.js')).toBe(false);
+    expect(anymatch(excludes, './node_modules/and-another/sub/test.js')).toBe(false);
+    expect(anymatch(excludes, './node_modules/@scoped/something/sub/test.js')).toBe(false);
   });
 
   test('should NOT match transpiledModules parent paths (e.g. with Yarn workspaces)', () => {
-    expect(anymatch(excludes, '../../node_modules/shared')).toBe(false);
-    expect(anymatch(excludes, '../../node_modules/and-another')).toBe(false);
+    expect(anymatch(excludes, '../../node_modules/shared/test.js')).toBe(false);
+    expect(anymatch(excludes, '../../node_modules/and-another/test.js')).toBe(false);
+    expect(anymatch(excludes, '../../node_modules/@scoped/something/test.js')).toBe(false);
+
+    expect(anymatch(excludes, '../../node_modules/shared/sub/test.js')).toBe(false);
+    expect(anymatch(excludes, '../../node_modules/and-another/sub/test.js')).toBe(false);
+    expect(anymatch(excludes, '../../node_modules/@scoped/something/sub/test.js')).toBe(false);
   });
 
   test('SHOULD match unreferenced modules', () => {
