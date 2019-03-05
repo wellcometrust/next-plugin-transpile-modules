@@ -1,5 +1,7 @@
 const path = require('path');
 
+const PATH_DELIMITER = '[\\\\/]'; // match 2 antislashes or one slash
+
 /**
  * Stolen from https://stackoverflow.com/questions/10776600/testing-for-equality-of-regular-expressions
  */
@@ -13,16 +15,15 @@ const generateIncludes = (modules) => {
   return modules.map(module => (new RegExp(`${safePath(module)}(?!.*node_modules)`)));
 };
 
-const pathDelimiter = '(\\\\|/)'; // match 2 antislashes or one slash
 const generateExcludes = (modules) => {
-  return [new RegExp(`node_modules(?!(${modules.map(safePath).join('|')})(?!.*node_modules))`)];
+  return [new RegExp(`node_modules${PATH_DELIMITER}(?!(${modules.map(safePath).join('|')})(?!.*node_modules))`)];
 };
 
 /**
  * On Windows, the Regex won't match as Webpack tries to resolve the
  * paths of the modules. So we need to check for \\ and /
  */
-const safePath = (module) => module.split('/').join(pathDelimiter);
+const safePath = (module) => module.split('/').join(PATH_DELIMITER);
 
 /**
  * Actual Next.js plugin
