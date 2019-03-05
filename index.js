@@ -3,19 +3,27 @@ const path = require('path');
 /**
  * Stolen from https://stackoverflow.com/questions/10776600/testing-for-equality-of-regular-expressions
  */
-function regexEqual (x, y) {
+const regexEqual = (x, y) => {
   return (x instanceof RegExp) && (y instanceof RegExp) &&
     (x.source === y.source) && (x.global === y.global) &&
     (x.ignoreCase === y.ignoreCase) && (x.multiline === y.multiline);
-}
+};
+
+const generateIncludes = (modules) => {
+  return modules.map(module => (new RegExp(`${module}(?!.*node_modules)`)));
+};
+
+const generateExcludes = (modules) => {
+  return [new RegExp(`node_modules(?!/(${modules.join('|')})(?!.*node_modules))`)];
+};
 
 /**
  * Actual Next.js plugin
  */
-module.exports = (nextConfig = {}) => {
+const withTm = (nextConfig = {}) => {
   const { transpileModules = [] } = nextConfig;
-  const includes = transpileModules.map(module => (new RegExp(`${module}(?!.*node_modules)`)));
-  const excludes = [new RegExp(`node_modules(?!/(${transpileModules.join('|')})(?!.*node_modules))`)];
+  const includes = generateIncludes(transpileModules);
+  const excludes = generateExcludes(transpileModules);
 
   return Object.assign({}, nextConfig, {
     webpack (config, options) {
@@ -76,3 +84,5 @@ module.exports = (nextConfig = {}) => {
     }
   });
 };
+
+module.exports = withTm;
