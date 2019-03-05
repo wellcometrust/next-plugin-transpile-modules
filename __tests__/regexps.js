@@ -38,6 +38,15 @@ describe('generateIncludes', () => {
     expect(anymatch(includes, '../../node_modules/something-else/test.js')).toBe(false);
     expect(anymatch(includes, 'node_modules/and-yet-another/test.js')).toBe(false);
   });
+
+  test('should handle win32 path delimiters well', () => {
+    const module = '@scoped/something';
+    const anotherModule = '@scoped\\something';
+
+    expect(anymatch(includes, `C:\\test\\node_modules\\${module}\\sub\\test.js`)).toBe(true);
+    expect(anymatch(includes, `C:\\test\\node_modules\\${anotherModule}\\sub\\test.js`)).toBe(true);
+    expect(anymatch(includes, `C:\\test\\node_modules\\unused\\sub\\test.js`)).toBe(false);
+  });
 });
 
 describe('generateExcludes', () => {
@@ -66,6 +75,15 @@ describe('generateExcludes', () => {
   test('SHOULD match unreferenced modules', () => {
     expect(anymatch(excludes, '../../node_modules/something-else')).toBe(true);
     expect(anymatch(excludes, 'node_modules/and-yet-another')).toBe(true);
+  });
+
+  test('should handle win32 path delimiters well', () => {
+    const module = '@scoped/something';
+    const anotherModule = '@scoped\\something';
+
+    expect(anymatch(excludes, `C:\\test\\node_modules\\${module}\\sub\\test.js`)).toBe(false);
+    expect(anymatch(excludes, `C:\\test\\node_modules\\${anotherModule}\\sub\\test.js`)).toBe(false);
+    expect(anymatch(excludes, `C:\\test\\node_modules\\unused\\sub\\test.js`)).toBe(true);
   });
 });
 
