@@ -10,12 +10,19 @@ const regexEqual = (x, y) => {
 };
 
 const generateIncludes = (modules) => {
-  return modules.map(module => (new RegExp(`${module}(?!.*node_modules)`)));
+  return modules.map(module => (new RegExp(`${safePath(module)}(?!.*node_modules)`)));
 };
 
+const pathDelimiter = '(\\\\|/)'; // match 2 antislashes or one slash
 const generateExcludes = (modules) => {
-  return [new RegExp(`node_modules(?!/(${modules.join('|')})(?!.*node_modules))`)];
+  return [new RegExp(`node_modules(?!(${modules.map(safePath).join('|')})(?!.*node_modules))`)];
 };
+
+/**
+ * On Windows, the Regex won't match as Webpack tries to resolve the
+ * paths of the modules. So we need to check for \\ and /
+ */
+const safePath = (module) => module.split('/').join(pathDelimiter);
 
 /**
  * Actual Next.js plugin
