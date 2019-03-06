@@ -74,7 +74,11 @@ module.exports = withPlugins([
 
 Next.js 7 introduced Webpack 4 and Babel 7, [which changed a couple of things](https://github.com/zeit/next.js/issues/5393#issuecomment-458517433), especially for TypeScript and Flow plugins.
 
-If you have a transpilation error when loading a page, check that your `.babelrc`/`babel.config.js` is up to date and valid, [you may have forgotten a preset](https://github.com/martpie/next-transpile-modules/issues/1#issuecomment-427749256) there.
+If you have a transpilation error when loading a page, check that your `babel.config.js` is up to date and valid, [you may have forgotten a preset](https://github.com/martpie/next-transpile-modules/issues/1#issuecomment-427749256) there.
+
+### I have trouble with transpilation and Yarn workspaces
+
+If you get a transpilation error when using Yarn workspaces, make sure you are using a `babel.config.js` and not a `.babelrc`. The former is a project-wide Babel configuration, when the latter works for relative paths only (and won't work as Yarn install dependencies in a parent directory).
 
 ### I have trouble with Yarn and hot reloading
 
