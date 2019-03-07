@@ -19,7 +19,7 @@ npm install --save @weco/next--plugin-transpile-modules
 or
 
 ```
-yarn add @weco/next--plugin-transpile-modules
+yarn add @weco/next-plugin-transpile-modules
 ```
 
 ## Usage
