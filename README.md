@@ -13,7 +13,7 @@ Makes it easy to have local libraries and keep a slick, manageable dev experienc
 ## Installation
 
 ```
-npm install --save @weco/next--plugin-transpile-modules
+npm install --save @weco/next-plugin-transpile-modules
 ```
 
 or
