@@ -45,18 +45,20 @@ const withTm = (nextConfig = {}) => {
       // Avoid Webpack to resolve transpiled modules path to their real path
       config.resolve.symlinks = false;
 
-      config.externals = config.externals.map(external => {
-        if (typeof external !== 'function') return external;
-        return (ctx, req, cb) => {
-          return includes.find(include =>
-            req.startsWith('.')
-              ? include.test(path.resolve(ctx, req))
-              : include.test(req)
-          )
-            ? cb()
-            : external(ctx, req, cb);
-        };
-      });
+      if(Array.isArray(config.externals)) {
+        config.externals = config.externals.map(external => {
+          if (typeof external !== 'function') return external;
+          return (ctx, req, cb) => {
+            return includes.find(include =>
+              req.startsWith('.')
+                ? include.test(path.resolve(ctx, req))
+                : include.test(req)
+            )
+              ? cb()
+              : external(ctx, req, cb);
+          };
+        }); 
+      }
 
       // Add a rule to include and parse all modules
       config.module.rules.push({
